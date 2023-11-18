@@ -2,7 +2,6 @@
 import { GroupedBarChart } from "@carbon/charts-react";
 import { MonthYearDropdown } from "../dropdowns/monthYear";
 import {Box,BoxArea,BoxHeader} from "./box"
-import "./styles.scss";
 import '@carbon/charts-react/styles.css'
 import { useState } from "react";
 
