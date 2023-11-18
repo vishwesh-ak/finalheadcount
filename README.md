@@ -184,6 +184,7 @@ Replace username, password of CouchDB database with your own, in the format: htt
       npm install
       npm install axios
       npm install @carbon/react
+      npm install react-scripts
 </pre>
 
 
