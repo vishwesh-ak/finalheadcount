@@ -1,0 +1,62 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/colors';
+
+.EmpPageWrap{
+  padding-left: $spacing-09;
+  padding-top:$spacing-10;
+
+}
+.repo-page__r1 {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+}
+ 
+.home__heading{
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+  padding-left: $spacing-06;
+}
+
+.filter{
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+} 
+
+.c4p--datagrid__toolbar-options{
+  display: none;
+}
+
+.filter__banner{
+  background-color: #f4f4f4 ;
+    padding-bottom: $spacing-06;
+}
+
+ .table-container {
+  width: 100%; 
+}
+
+.c4p--datagrid-filter-panel.c4p--datagrid-filter-panel__container {
+  height:calc(100vh - 400px);
+}
+
+.buttonContainer {
+  text-align: right;
+  
+}
+
+.c4p--datagrid__row-size-options-container.cds--popover--tab-tip
+{
+  display: none;
+}
+
+// .cds--popover
+// .cds--btn--icon-only.cds--btn.cds--btn--ghost.cds--btn--icon-only.cds--btn cds--btn--ghost
+// .cds--popover-content.cds--tooltip-content
+// .cds--popover-container
+// .cds--tooltip-trigger__wrapper
+// .cds--popover-caret
+
+ 
+ //  {
+  //   display: none;
+  // }

@@ -1,0 +1,80 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+@use './mixins.scss' as *;
+@use './overrides.scss';
+
+
+
+.home__banner {
+   padding-bottom: $spacing-07 * 4;
+  padding-left: $spacing-06;
+  @include home-background;
+}
+.home__heading {
+  
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+  padding-left: $spacing-06;
+}
+
+
+
+.tabs-group-content {
+  padding: $spacing-10 $spacing-06;
+}
+
+.home__subheading {
+  @include type-style('productive-heading-03');
+
+  font-weight: 600;
+}
+
+.home__p {
+  @include type-style('productive-heading-03');
+   margin-bottom: $spacing-08;
+
+  @include breakpoint-between((320px + 1), md) {
+    max-width: 75%;
+  }
+}
+
+.tabs-group {
+  background-color: $layer-03;
+  
+  
+}
+
+.home__r3 {
+  padding-bottom: $spacing-09;
+  padding-left: $spacing-07;
+  @include home-background;
+}
+
+.home__label {
+  @include type-style('heading-01');
+}
+
+// .home__banner,
+// .home__r2,
+// .home__r3 {
+//   margin-right: -20px;
+
+//   @include breakpoint-down(md) {
+//     margin-left: 0;
+//     margin-right: 0;
+//   }
+// }
+
+.cds--content {
+  padding: 0;
+   
+}
+
+.cds--content .cds--css-grid {
+  max-width: 100%;
+  @include breakpoint(md) {
+     padding-right: 0px;
+  }
+ }

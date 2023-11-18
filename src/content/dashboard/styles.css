@@ -1,0 +1,13 @@
+.gridbg{
+    display: grid;
+    grid-template-columns: repeat(18,1fr);
+    gap: 10px;
+    width:100%;
+  }
+
+  @media (max-width:600px){
+    .gridbg{
+      grid-template-columns: repeat(1,1fr);
+      height:auto;
+    }
+  }
