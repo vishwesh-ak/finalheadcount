@@ -186,20 +186,20 @@ import { Content } from '@carbon/react';
   }, []);
 
   
-  // const handleFilterEmployees = () => {
-  //   const searchText = document.getElementById('filterInput').value.toLowerCase();
+  const handleFilterEmployees = () => {
+    const searchText = document.getElementById('filterInput').value.toLowerCase();
 
-  //   const filteredEmployees = data.filter((employee) => {
-  //     for (const key in employee) {
-  //       if (employee[key] && employee[key].toString().toLowerCase().includes(searchText)) {
-  //         return true;
-  //       }
-  //     }
-  //     return false;
-  //   });
+    const filteredEmployees = data.filter((employee) => {
+      for (const key in employee) {
+        if (employee[key] && employee[key].toString().toLowerCase().includes(searchText)) {
+          return true;
+        }
+      }
+      return false;
+    });
 
-  //   setFilteredData(filteredEmployees);
-  // };
+    setFilteredData(filteredEmployees);
+  };
 
   const handleSaveEdits = () => {
     axios
@@ -212,32 +212,32 @@ import { Content } from '@carbon/react';
       });
   };
 
-// const handleDownloadData = () => {
-//   axios
-//     .get('http://localhost:5000/api/getEmployees')
-//     .then((response) => {
-//       const data = response.data;
-
-//       //   data to CSV using PapaParse
-//       const csvData = Papa.unparse(data);
-
-//       //   Blob with the CSV data
-//       const blob = new Blob([csvData], { type: 'text/csv' });
-
-//       //   download link
-//       const link = document.createElement('a');
-//       link.href = URL.createObjectURL(blob);
-//       link.setAttribute('download', 'employees.csv');
-
-//        document.body.appendChild(link);
-//       link.click();
-
-//        document.body.removeChild(link);
-//     })
-//     .catch((error) => {
-//       console.error('Error downloading data:', error);
-//     });
-// };
+  const handleDownloadData = () => {
+    axios
+      .get('http://localhost:5000/api/getEmployees')
+      .then((response) => {
+        const data = response.data;
+  
+        //   data to CSV using PapaParse
+        const csvData = Papa.unparse(data);
+  
+        //   Blob with the CSV data
+        const blob = new Blob([csvData], { type: 'text/csv' });
+  
+        //   download link
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.setAttribute('download', 'employees.csv');
+  
+         document.body.appendChild(link);
+        link.click();
+  
+         document.body.removeChild(link);
+      })
+      .catch((error) => {
+        console.error('Error downloading data:', error);
+      });
+  };
  
 
   return (
