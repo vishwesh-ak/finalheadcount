@@ -1,0 +1,12 @@
+
+.cds--list-box__wrapper{
+  width:50%;
+}
+
+.datemonthflex{
+  margin-bottom: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+}

@@ -1,0 +1,99 @@
+:root{
+    --boxheaderfill:var(--boxfill);
+    --boxfill:#eaecf2;
+    --boxhovercolor:#d1d6e3;
+    --boxheadertext:#291a00;
+    --fontcolor:#222222;
+    --maincol:white;
+}
+
+.box{
+    width:100%;
+    height:400px;
+    background-color: var(--boxfill);
+    display:flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding:0px;
+    overflow: scroll;
+    box-shadow: 0px 0px 5px #77777771;
+    font-family: Poppins;
+  
+    &:hover{
+      background-color: var(--boxhovercolor);
+      .boxheader{
+        background-color: #a7a7a700;
+      }
+    }
+  }
+  
+  .headerbox{
+    grid-column: span 18;
+    height:fit-content;
+  }
+  
+  ::-webkit-scrollbar{
+    display:none
+  }
+  
+  .box1{
+    grid-area: box1;
+    grid-column: span 7;
+    grid-row: span 1;
+  }
+  .box2{
+    grid-area: box2;
+    grid-column: span 7;
+    grid-row: span 1;
+  }
+  .box3{
+    grid-area: box3 ;
+    grid-column: span 4;
+    grid-row: span 1;
+  } 
+  .box4{
+    grid-area: box4;
+    grid-column: span 9;
+    grid-row:span 1;
+  }
+  
+  .boxheader{
+    background-color: var(--boxheaderfill);
+    color:var(--boxheadertext);
+    border-radius: 10px 10px 0px 0px;
+    font-size: 18px;
+    font-family: REM;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  
+  .boxarea{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 12px;
+    margin-top: 0px;
+    width: auto;
+    overflow: scroll;
+    background-color: var(--boxfill);
+    border-radius: 0px 0px 13px 13px;
+    padding:5px;
+  }
+  
+.header{
+    background-color:#00000000;
+    color: var(--fontcolor);
+    position: relative;
+    top: 0;
+    left: 0; 
+    size: 14px;
+}
+
+@media (max-width:600px){
+  .box1,.box2,.box3,.box4{
+    grid-column: span 1;
+  }
+}
