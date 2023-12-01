@@ -1,6 +1,6 @@
 
 export default function PadXAxis(data,groupname){
-    if(data.length==0){
+    if(data.length===0){
         return []
     }
     var a=[],i,j,k;
@@ -10,8 +10,8 @@ export default function PadXAxis(data,groupname){
     for(i=1;i<data.length;i++){
         m2=data[i].key[1]
         y2=data[i].key[0]
-        if(y1==y2){
-            if(m1==m2){
+        if(y1===y2){
+            if(m1===m2){
                 a[a.length-1].value++;
             }
             else{

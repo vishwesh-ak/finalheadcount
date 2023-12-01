@@ -3,7 +3,7 @@ export default function makeDonutValues(data,month,year){
     var a={}
     var keys=[]
     for(var i=0;i<data.length;i++){
-        if(data[i].key[0]==year && data[i].key[1]>month){
+        if(data[i].key[0]===year && data[i].key[1]>month){
             continue;
         }
         if(data[i].key[0]>year){
@@ -18,7 +18,7 @@ export default function makeDonutValues(data,month,year){
                 keys.push(data[i].key[4])
               }
         }
-        if(data[i].key[2]==year && data[i].key[3]>=month){
+        if(data[i].key[2]===year && data[i].key[3]>=month){
             if(a[data[i].key[4]]) {
                 a[data[i].key[4]]+=data[i].value;
               } else {
