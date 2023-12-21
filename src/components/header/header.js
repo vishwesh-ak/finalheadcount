@@ -51,22 +51,20 @@ const CarbonHeader = () => {
               onSideNavBlur={onClickSideNavExpand}
               isRail
             >
-            <SideNavItems>
-  <SideNavLink renderIcon={Home} as={Link} to="/home">
-    Home
-  </SideNavLink>
-  <SideNavLink renderIcon={Fade} as={Link} to="/emppage">
-    BluePage
-  </SideNavLink>
-  <SideNavLink renderIcon={Switcher} as={Link} to="/dashboard">
-    Dashboard
-  </SideNavLink>
-  <SideNavLink renderIcon={UserAvatar} as={Link} to="/">
-    Logout
-  </SideNavLink>
-</SideNavItems>
-
-    
+              <SideNavItems>
+                <SideNavLink renderIcon={Home} as={Link} to="/home">
+                  Home
+                </SideNavLink>
+                <SideNavLink renderIcon={Fade} as={Link} to="/emppage">
+                  BluePage
+                </SideNavLink>
+                <SideNavLink renderIcon={Switcher} as={Link} to="/dashboard">
+                  Dashboard
+                </SideNavLink>
+                <SideNavLink renderIcon={UserAvatar} as={Link} to="/">
+                  Logout
+                </SideNavLink>
+              </SideNavItems>
             </SideNav>
           </Header>
         )}

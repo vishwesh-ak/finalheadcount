@@ -49,6 +49,12 @@
   display: none;
 }
 
+.buttonsdiv{
+  display:flex;
+  gap:20px;
+  padding-top:10px;
+}
+
 // .cds--popover
 // .cds--btn--icon-only.cds--btn.cds--btn--ghost.cds--btn--icon-only.cds--btn cds--btn--ghost
 // .cds--popover-content.cds--tooltip-content

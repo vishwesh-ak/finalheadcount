@@ -4,6 +4,7 @@ import {
   useDatagrid,
   useInlineEdit,
   useFiltering,  
+  useSelectRows
 } from '@carbon/ibm-products';
 import DatagridPagination from './datagridPagination';
 import { pkg } from '@carbon/ibm-products/lib/settings';
@@ -11,7 +12,7 @@ import { pkg } from '@carbon/ibm-products/lib/settings';
 import './emppage.scss';
  import { DatagridActions } from './datagridActions';
 import Papa from 'papaparse';  
-import { Content } from '@carbon/react';
+import { Content, Button } from '@carbon/react';
 
  const defaultHeader = [
   {
@@ -116,6 +117,52 @@ import { Content } from '@carbon/react';
   const [error, setError] = useState(null); 
   const [httpError, setHttpError] = useState(null);
  
+  var getBatchActions = function getBatchActions() {
+    return [{
+      label: 'Delete',
+      onClick: Delete
+    }]
+  }
+  
+  const Delete = (rows) =>{
+    var lis=[],k
+    for(var i=0;i<rows.length;i++)
+    {
+      k=parseInt(rows[i].id)
+      lis.push(data[k])
+    }
+    console.log("setup")
+    console.log(lis)
+    console.log(rows)
+    console.log(data)
+    axios
+      .post('http://localhost:5000/api/deleteEmployees', { docsToDelete: lis})
+      .then((response) => {
+        console.log(response.data.message);
+        return axios.get('http://localhost:5000/api/getEmployees')
+      })
+      .then((response) => {
+        setData(response.data);
+        console.log("deleted version:")
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error('Error deleting employees:', error);
+      });
+    console.log("ok")
+    // axios
+    //   .get('http://localhost:5000/api/getEmployees')
+    //   .then((response) => {
+    //     setData(response.data);
+    //   })
+      // .catch((error) => {
+      //   setHttpError(error);
+      //   console.error('Error fetching data:', error);
+      // });
+      console.log(data.length)
+      console.log(data)
+  }
+
 //datagridState//
   const datagridState = useDatagrid({
     columns: columns,
@@ -124,6 +171,7 @@ import { Content } from '@carbon/react';
       pageSize: 50,
       pageSizes: [5, 10, 25, 50],
     },
+    toolbarBatchActions:getBatchActions(),
     onDataUpdate: setData,
     DatagridPagination: DatagridPagination,
     filterProps: {
@@ -173,7 +221,7 @@ import { Content } from '@carbon/react';
      },
     DatagridActions,
       batchActions: true,
-   }, useInlineEdit, useFiltering);
+   }, useInlineEdit, useFiltering,useSelectRows);
    useEffect(() => {
     axios.get('http://localhost:5000/api/getEmployees')
       .then((response) => {
@@ -183,6 +231,8 @@ import { Content } from '@carbon/react';
         setHttpError(error);
         console.error('Error fetching data:', error);
       });
+      console.log("Got data")
+      console.log(data)
   }, []);
 
   
@@ -202,6 +252,8 @@ import { Content } from '@carbon/react';
   };
 
   const handleSaveEdits = () => {
+    console.log("Received drata is")
+    console.log(data)
     axios
       .post('http://localhost:5000/api/updateEmployees', { employees: data })
       .then((response) => {
@@ -212,33 +264,62 @@ import { Content } from '@carbon/react';
       });
   };
 
-  const handleDownloadData = () => {
+  const SyncUp = () =>{
+    console.log("Syncing......")
+    var data1=[]
+    data1.push({
+      "EmployeeSerial#": "1123",
+      "Emp Name": "Cindy Crawford",
+      "DeptCode": "IT",
+      "Dept Name": "IT Department",
+      "IsManager?": "no",
+      "Emp Type": "Full-Time",
+      "Location Blue pages": "Location ALA",
+      "Mgr Name": "Melissa Smith",
+      "Leader Name": "Liliana Lambert",
+      "Diversity": "No",
+      "Work location": "Building 776",
+      "Date of Joining": "2022-07-19",
+      "Date of Leaving": "",
+      "Remarks": "IT expert",
+      "Employee Status": "Y"
+    },{ 
+      "EmployeeSerial#": "1123",
+      "Emp Name": "Daniel Dawson",
+      "DeptCode": "IT",
+      "Dept Name": "IT Department",
+      "IsManager?": "no",
+      "Emp Type": "Full-Time",
+      "Location Blue pages": "Location ALA",
+      "Mgr Name": "Melissa Smith",
+      "Leader Name": "Levi Lambert",
+      "Diversity": "No",
+      "Work location": "Building 776",
+      "Date of Joining": "2022-07-19",
+      "Date of Leaving": "",
+      "Remarks": "IT expert",
+      "Employee Status": "Y"
+    })
+    console.log(data1)
+    console.log("api")
     axios
-      .get('http://localhost:5000/api/getEmployees')
-      .then((response) => {
-        const data = response.data;
-  
-        //   data to CSV using PapaParse
-        const csvData = Papa.unparse(data);
-  
-        //   Blob with the CSV data
-        const blob = new Blob([csvData], { type: 'text/csv' });
-  
-        //   download link
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.setAttribute('download', 'employees.csv');
-  
-         document.body.appendChild(link);
-        link.click();
-  
-         document.body.removeChild(link);
+      .post("http://localhost:5000/api/addEmployees",{ employees: data1})
+      .then(response=> {
+        console.log(response.data.message);
+        console.log("Updating,..............")
+        return axios.get('http://localhost:5000/api/getEmployees')
+      })
+      .then(response => {
+        setData(response.data);
+        console.log("insertted version:")
+        console.log(data)
       })
       .catch((error) => {
-        console.error('Error downloading data:', error);
+        console.error('Error inserting employees:', error);
       });
-  };
- 
+    console.log("endd")
+  }
+
 
   return (
     <Content>
@@ -253,16 +334,18 @@ import { Content } from '@carbon/react';
           <p>Error fetching data: {error}</p>
         ) : (
           <Datagrid datagridState={{ ...datagridState }} 
-          onBlur={handleSaveEdits}
           />
 
-        )}
-        {error && <p>Error fetching data: {error}</p>}
+        )} 
+        {error && <p>Error fetching data: {error}</p>}  
     {/* <Button 
       kind="secondary"
       onClick={handleSaveEdits}>Save Edits</Button> */}
       </div>
-
+    <div className='buttonsdiv'>
+      <Button onClick={SyncUp}>Sync</Button>
+      <Button onClick={handleSaveEdits}>Save Edits</Button>
+    </div>
     </Content>
   );
 };
